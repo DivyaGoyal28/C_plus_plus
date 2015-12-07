@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	int vi[8]={-2, -3, 4, -1, -2, 1, 5, -3};
+	int max_sum=0;
+	int max_sum_so_far=0,max_start=0,max_start_so_far=0,max_end=0;
+	//Kadane's algorithm
+	for(int i=0; i<8 ;i++)
+	{
+		max_sum_so_far=vi[i]+max_sum_so_far;
+		
+		if(max_sum_so_far < 0)
+		{
+			max_sum_so_far=0;
+			max_start_so_far=i+1;
+		}
+		
+		
+		if(max_sum <= max_sum_so_far)
+		{
+			max_sum=max_sum_so_far;
+			max_start=max_start_so_far;
+			max_end=i;
+		}
+	}
+	cout<<"max_sum= "<<max_sum<<"from "<<max_start<<"to "<<max_end<<endl;
+	return 0;
+}
