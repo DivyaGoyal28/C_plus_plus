@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+#include <stack>
+
+using namespace std;
+void longest_common_substr(string str)
+{
+	
+}
+void revers_words (const string str,string &rev_str)
+{
+	string space(" ");
+	int found=0;
+	int pos=str.length()-1;
+	while(pos >= 0)
+	{
+		found=str.rfind(space,pos);
+		int i= found;
+		while(i < pos)
+		{
+			i++;
+			rev_str.push_back(str[i]);
+		}
+		rev_str.push_back(' ');
+		pos=found-1;
+	}
+	
+}
+void swap_words (int index_str1,int index_str2,string &str)
+{
+	string str1,str2;
+	int i=index_str1;
+	int count_i = 0;
+	int count_j = 0;
+	//extract words
+	while(str[i] != ' ')
+	{
+		str1.push_back(str[i]);
+		i++;
+		count_i++;
+	} 
+	int j=index_str2;
+	
+	while(str[j] != ' ' && str[j] != '\0' )
+	{
+		str2.push_back(str[j]);
+		j++;
+		count_j++;
+	} 
+	str.replace(index_str2,count_j,str1);
+	str.replace(index_str1,count_i,str2);
+	
+}
+int main()
+{
+	string str = "My name is divya . My birthday was yesterday .";
+	string rev_str;
+	int index_str1=3;
+	int index_str2=8;
+	revers_words(str,rev_str);
+	cout << "REversed string for " << str << " is = " << rev_str <<endl;
+	swap_words(index_str1,index_str2,str);
+	cout <<str;
+	return 0;
+}
+
